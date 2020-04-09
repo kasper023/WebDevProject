@@ -7,7 +7,6 @@
 .products{
   width: 90%;
   display: flex;
-  justify-content: space-between;
   text-align: center;
   flex-wrap: wrap;
   background: white;
@@ -24,6 +23,7 @@
   align-content: center;
   padding: 10px 10px;
   margin: 5px;
+  margin-left: 10px;
 }
 
 .product_item img{
