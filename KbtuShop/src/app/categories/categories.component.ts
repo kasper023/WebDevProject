@@ -9,9 +9,18 @@ import {Category} from '../interfaces/category';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-
-  constructor() { }
+  categories;
+  selectedCategory: Category;
+  constructor(private service: CategoryService) { }
 
   ngOnInit(): void {
+    this.getCategories();
+  }
+  getCategories() {
+    const a = this.service.getCategory();
+    a.subscribe(cat => this.categories = cat );
+  }
+  onSelect(category: Category) {
+    this.selectedCategory = category;
   }
 }
