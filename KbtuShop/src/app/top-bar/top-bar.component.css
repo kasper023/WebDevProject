@@ -23,7 +23,6 @@ h4{
   width: 64px;
   height: 64px;
   margin-right: 10px;
-  border-radius: 50%;
 }
 
 .col-1 .header_title h3{
@@ -46,7 +45,7 @@ h4{
 }
 
 .col-2 .social a{
-
+  margin-right: 5px;
 }
 
 .col-3{
