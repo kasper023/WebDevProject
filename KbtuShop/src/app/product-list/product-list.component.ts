@@ -40,6 +40,16 @@ export class ProductListComponent implements OnInit, OnDestroy {
     a.subscribe(cat => this.products = cat );
   }
 
+  sortByAsc() {
+    const a = this.service.sortByAsc(this.products);
+    a.subscribe(cat => this.products = cat);
+  }
+
+  sortByDesc() {
+    const a = this.service.sortByDesc(this.products);
+    a.subscribe(cat => this.products = cat);
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

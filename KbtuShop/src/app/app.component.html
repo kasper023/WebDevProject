@@ -1,9 +1,21 @@
-<app-top-bar></app-top-bar>
-<app-navigation></app-navigation>
-<div class="container">
-  <router-outlet></router-outlet>
+<div *ngIf="!logged">
+  <input type="text" [(ngModel)]="username">
+  <input type="text" [(ngModel)]="password">
+  <button (click)="login()">login</button>
 </div>
-<app-footer></app-footer>
+
+<div *ngIf="logged">
+  <div class="profile">
+    <h5>{{username}}</h5>
+    <button (click)="logout()">logout</button>
+  </div>
+  <app-top-bar></app-top-bar>
+  <app-navigation></app-navigation>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+</div>
 
 <!--
 Copyright Google LLC. All Rights Reserved.
