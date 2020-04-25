@@ -50,6 +50,10 @@ class ProductByCategoryView(APIView):
         return Response(serializer.data)
 
 
+# class SubcategoryView(APIView):
+#     def get(self, request)
+
+
 class ProductDetailView(APIView):
     permission_classes = (IsAuthenticated,)
 

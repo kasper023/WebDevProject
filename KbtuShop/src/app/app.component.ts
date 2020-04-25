@@ -25,23 +25,23 @@ export class AppComponent {
     }
   }
 
-  // login() {
-  //   this.productService.login(this.username, this.password)
-  //     .subscribe(res => {
+  login() {
+    this.productService.login(this.username, this.password)
+      .subscribe(res => {
 
-  //       localStorage.setItem('token', res.token);
+        localStorage.setItem('token', res.token);
 
-  //       this.logged = true;
-  //       console.log(this.username);
-  //       // this.username = '';
-  //       // this.password = '';
-  //     });
-  // }
+        this.logged = true;
+        console.log(this.username);
+        // this.username = '';
+        // this.password = '';
+      });
+  }
 
-  // logout() {
-  //   localStorage.clear();
-  //   this.logged = false;
-  // }
+  logout() {
+    localStorage.clear();
+    this.logged = false;
+  }
 }
 
 

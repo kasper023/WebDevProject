@@ -12,6 +12,11 @@ class Category(models.Model):
         }
 
 
+# class Subcategory(models.Model):
+#     name = models.CharField(max_length=30)
+#     category = models.ForeignKey(Category, on_delete=models.SET_NULL)
+
+
 class Product(models.Model):
     name = models.CharField(max_length=30, default='company')
     description = models.CharField(max_length=30, default='', blank=True)

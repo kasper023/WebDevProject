@@ -32,13 +32,13 @@ import { FooterComponent } from './footer/footer.component';
     MatButtonModule,
     FormsModule,
   ],
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: AuthInterceptor,
-  //     multi: true
-  //   }
-  // ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   declarations: [
     AppComponent,
     TopBarComponent,

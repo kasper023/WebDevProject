@@ -12,9 +12,9 @@ import {HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpClient} from '
 //   }
 // }
 
-// export class LoginResponse {
-//   token: string;
-// }
+export class LoginResponse {
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -53,10 +53,10 @@ export class ProductListService {
     return of(products);
   }
 
-  // login(username, password): Observable<LoginResponse> {
-  //   return this.httpClient.post<LoginResponse>(`${this.BASE_URL}/api/login/`, {
-  //     username,
-  //     password
-  //   });
-  // }
+  login(username, password): Observable<LoginResponse> {
+    return this.httpClient.post<LoginResponse>(`${this.BASE_URL}/api/login/`, {
+      username,
+      password
+    });
+  }
 }
