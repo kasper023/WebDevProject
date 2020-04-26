@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class UserManager(models.Manager):
+    def filter_by_user(self, user):
+        return self.filter (user=user)
+
+
 class Category(models.Model):
     name = models.CharField(max_length=30, default='category')
 

@@ -68,11 +68,11 @@ class ProductDetailView(APIView):
 @permission_classes([IsAuthenticated])
 def cart_list(request, pk=None):
     if request.method == 'GET':
-        cart_list = Cart.objects.filter(user=request.user)
-        product_list = []
-        for i in cart_list:
-            product_list.append(Product.objects.get(id=i.product.id))
-        serializer = ProductSerializer(product_list, many=True)
+        cart_objects = Cart.objects.filter(user=request.user)
+        # product_list = []
+        # for i in cart_list:
+        #     product_list.append(Product.objects.get(id=i.product.id))
+        serializer = CartSerializer(cart_objects, many=True)
         return Response(serializer.data)
 
     if request.method == 'POST':
@@ -95,10 +95,10 @@ def cart_list(request, pk=None):
 def favorite_list(request, pk=None):
     if request.method == 'GET':
         favorite_list = Favorite.objects.filter(user=request.user)
-        product_list = []
-        for i in favorite_list:
-            product_list.append(Product.objects.get(id=i.product.id))
-        serializer = ProductSerializer(product_list, many=True)
+        # product_list = []
+        # for i in favorite_list:
+        #     product_list.append(Product.objects.get(id=i.product.id))
+        serializer = FavoriteSerializer(favorite_list, many=True)
         return Response(serializer.data)
 
     if request.method == 'POST':
