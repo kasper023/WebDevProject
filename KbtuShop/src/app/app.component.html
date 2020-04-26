@@ -1,7 +1,14 @@
 <div *ngIf="!logged">
-  <input type="text" [(ngModel)]="username">
-  <input type="text" [(ngModel)]="password">
-  <button (click)="login()">login</button>
+  <div class="login">
+    <input type="text" [(ngModel)]="username">
+    <input type="text" [(ngModel)]="password">
+    <button (click)="login()">login</button>
+  </div>
+
+  <app-top-bar></app-top-bar>
+  <app-navigation></app-navigation>
+  <app-footer></app-footer>
+
 </div>
 
 <div *ngIf="logged">

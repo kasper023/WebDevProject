@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { FooterComponent } from './footer/footer.component';
-// import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   imports: [

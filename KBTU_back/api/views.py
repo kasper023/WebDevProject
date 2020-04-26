@@ -64,9 +64,9 @@ class ProductDetailView(APIView):
 
 
 # function based views
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def cart_list(request):
+def cart_list(request, pk=None):
     if request.method == 'GET':
         cart_list = Cart.objects.all()
         serializer = CartSerializer(cart_list, many=True)
@@ -79,8 +79,16 @@ def cart_list(request):
             return Response(serializer.data)
         return Response(serializer.errors)
 
+    if request.method == 'DELETE':
+        if pk is None:
+            return Response('Nothing to delete')
+        cart_list = Cart.objects.all()
+        cart_item = Cart.objects.get(id=pk)
+        cart_item.delete()
+        return Response('item was deleted')
 
-@api_view(['GET', 'PUT', 'DELETE'])
+
+@api_view(['GET', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def cart_detail(request, pk):
     try:
@@ -92,16 +100,10 @@ def cart_detail(request, pk):
         serializer = CartSerializer(cart_item)
         return Response(serializer.data)
 
-    if request.method == 'PUT':
-        serializer = CartSerializer(instance=cart_item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors)
-
     if request.method == 'DELETE':
         cart_item.delete()
         return Response({'deleted': True})
+
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
