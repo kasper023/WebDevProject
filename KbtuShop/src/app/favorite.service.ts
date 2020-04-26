@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 import { Product } from './interfaces/product';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+export class FavoriteService {
   items: any = [];
 
   constructor(private httpClient: HttpClient) { }
 
   getProduct(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>('http://localhost:8000/api/cart/');
+    return this.httpClient.get<Product[]>('http://localhost:8000/api/favorite/');
   }
 
-  addToCart(product) {
+  addToFavorite(product) {
     this.items.push(product);
   }
 
-  deleteFromCart(id: number) {
-    return this.httpClient.delete(`http://localhost:8000/api/cart/${id}`);
-  }
 }

@@ -68,8 +68,11 @@ class ProductDetailView(APIView):
 @permission_classes([IsAuthenticated])
 def cart_list(request, pk=None):
     if request.method == 'GET':
-        cart_list = Cart.objects.all()
-        serializer = CartSerializer(cart_list, many=True)
+        cart_list = Cart.objects.filter(user=request.user)
+        product_list = []
+        for i in cart_list:
+            product_list.append(Product.objects.get(id=i.product.id))
+        serializer = ProductSerializer(product_list, many=True)
         return Response(serializer.data)
 
     if request.method == 'POST':
@@ -82,9 +85,34 @@ def cart_list(request, pk=None):
     if request.method == 'DELETE':
         if pk is None:
             return Response('Nothing to delete')
-        cart_list = Cart.objects.all()
         cart_item = Cart.objects.get(id=pk)
         cart_item.delete()
+        return Response('item was deleted')
+
+
+@api_view(['GET', 'POST', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def favorite_list(request, pk=None):
+    if request.method == 'GET':
+        favorite_list = Favorite.objects.filter(user=request.user)
+        product_list = []
+        for i in favorite_list:
+            product_list.append(Product.objects.get(id=i.product.id))
+        serializer = ProductSerializer(product_list, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        serializer = FavoriteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+    if request.method == 'DELETE':
+        if pk is None:
+            return Response('Nothing to delete')
+        favorite_item = Favorite.objects.get(id=pk)
+        favorite_item.delete()
         return Response('item was deleted')
 
 
@@ -103,22 +131,6 @@ def cart_detail(request, pk):
     if request.method == 'DELETE':
         cart_item.delete()
         return Response({'deleted': True})
-
-
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def favorite_list(request):
-    if request.method == 'GET':
-        favorite_list = Favorite.objects.all()
-        serializer = FavoriteSerializer(favorite_list, many=True)
-        return Response(serializer.data)
-
-    if request.method == 'POST':
-        serializer = FavoriteSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])

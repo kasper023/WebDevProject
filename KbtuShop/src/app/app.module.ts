@@ -15,6 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { FooterComponent } from './footer/footer.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { AuthInterceptor } from './auth.interceptor';
       {path: 'category/:categoryId/products', component: CategoriesComponent},
       {path: 'products/:productId', component: ProductItemComponent},
       {path: 'cart', component: CartComponent},
+      {path: 'favorite', component: FavoriteComponent},
     ]),
     BrowserAnimationsModule,
     MatButtonModule,
@@ -48,6 +50,7 @@ import { AuthInterceptor } from './auth.interceptor';
     ProductItemComponent,
     CartComponent,
     FooterComponent,
+    FavoriteComponent,
   ],
   bootstrap: [ AppComponent ],
 })

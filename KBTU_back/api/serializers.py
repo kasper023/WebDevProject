@@ -50,7 +50,7 @@ class CartSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class FavoriteSerializer(serializers.ModelField):
+class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
         fields = '__all__'

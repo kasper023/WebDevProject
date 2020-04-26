@@ -1,6 +1,10 @@
 <h3>Корзина</h3>
 
 <div class="cart-item" *ngFor="let item of items">
+  <script>
+    console.log(`${item}`)
+  </script>
   <span>{{item.name}}</span>
   <span>{{item.price | currency}}</span>
+  <button (click)="delete()">X</button>
 </div>
