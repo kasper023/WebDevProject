@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Product } from '../interfaces/product';
 import { Cart } from '../interfaces/cart';
-import { TIMEOUT } from 'dns';
 
 @Component({
   selector: 'app-cart',
